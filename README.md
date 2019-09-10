@@ -33,5 +33,3 @@ So when you are choosing your character it changes your steam id which is normal
 ## Credits
 
 > ESX Framework and **KASH** AND **Onno204** for creating the resource. You can do whatever the f with it what you want but it is nice to give the main man credits ;)
-
-- LOVE KASH (Discord: KASH#0205)
