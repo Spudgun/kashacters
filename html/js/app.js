@@ -33,7 +33,7 @@ $("#play-char").click(function () {
 
 $("#deletechar").click(function () {
     $.post("http://esx_kashacters/DeleteCharacter", JSON.stringify({
-        charid: $('.active-char').attr("data-charid"),
+        charid: Number($('.active-char').attr("data-charid")),
     }));
     Kashacter.CloseUI();
 });
