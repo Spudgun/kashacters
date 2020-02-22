@@ -20,23 +20,31 @@ end)
 RegisterServerEvent("kashactersS:CharacterChosen")
 AddEventHandler('kashactersS:CharacterChosen', function(charid, ischar)
     local src = source
-    local spawn = {}
-    SetLastCharacter(src, tonumber(charid))
-    SetCharToIdentifier(GetPlayerIdentifiers(src)[1], tonumber(charid))
-    if ischar == "true" then
-        spawn = GetSpawnPos(src)
+    if type(charid) == "number" and type(ischar) == "boolean" then
+        local spawn = {}
+        SetLastCharacter(src, tonumber(charid))
+        SetCharToIdentifier(GetPlayerIdentifiers(src)[1], tonumber(charid))
+        if ischar then
+            spawn = GetSpawnPos(src)
+        else
+    		TriggerClientEvent('skinchanger:loadDefaultModel', src, true, cb)
+            spawn = { x = 195.55, y = -933.36, z = 29.90 } -- DEFAULT SPAWN POSITION
+        end
+        TriggerClientEvent("kashactersC:SpawnCharacter", src, spawn)
     else
-		TriggerClientEvent('skinchanger:loadDefaultModel', src, true, cb)
-        spawn = { x = 195.55, y = -933.36, z = 29.90 } -- DEFAULT SPAWN POSITION
+        -- Trigger Ban Event here to ban individuals trying to use SQL Injections
     end
-    TriggerClientEvent("kashactersC:SpawnCharacter", src, spawn)
 end)
 
 RegisterServerEvent("kashactersS:DeleteCharacter")
 AddEventHandler('kashactersS:DeleteCharacter', function(charid)
     local src = source
-    DeleteCharacter(GetPlayerIdentifiers(src)[1], charid)
-    TriggerClientEvent("kashactersC:ReloadCharacters", src)
+    if type(charid) == "number" then
+        DeleteCharacter(GetPlayerIdentifiers(src)[1], charid)
+        TriggerClientEvent("kashactersC:ReloadCharacters", src)
+    else
+        -- Trigger Ban Event here to ban individuals trying to use SQL Injections
+    end
 end)
 
 function GetPlayerCharacters(source)

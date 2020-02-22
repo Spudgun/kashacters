@@ -25,8 +25,8 @@ $(".character-box").click(function () {
 
 $("#play-char").click(function () {
     $.post("http://esx_kashacters/CharacterChosen", JSON.stringify({
-        charid: $('.active-char').attr("data-charid"),
-        ischar: $('.active-char').attr("data-ischar"),
+        charid: Number($('.active-char').attr("data-charid")),
+        ischar: ($('.active-char').attr("data-ischar") == "true"),
     }));
     Kashacter.CloseUI();
 });
